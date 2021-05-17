@@ -9,13 +9,18 @@ export class ToolTipSingletonDirective implements AfterViewInit {
 
   @ContentChildren(ToolTipDirective, {descendants: true})
   elementsWithTooltips: QueryList<ToolTipDirective>
+  singletonInstance: any;
   constructor() { }
 
   ngAfterViewInit() {
     console.log(this.elementsWithTooltips)
-    createSingleton(this.getTippyInstances(), {
+    this.singletonInstance = createSingleton(this.getTippyInstances(), {
       moveTransition: 'transform 0.2s ease-out',
       delay: [200, 0]
+    })
+
+    this.elementsWithTooltips.changes.subscribe(() => {
+      this.singletonInstance.setInstances(this.getTippyInstances())
     })
   }
 
