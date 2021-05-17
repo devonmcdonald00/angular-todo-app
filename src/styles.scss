@@ -1,4 +1,6 @@
 @import '../node_modules/bulma/bulma.sass';
+@import 'tippy.js/dist/tippy.css';
+
 
 .alt-gradient-button {
     background: linear-gradient(to right, rgb(236, 72, 140), rgb(240, 54, 82));
